@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #07080c;
+  --color-panel: #12141c;
+  --color-panel-2: #1b2030;
+  --color-line: #2c3348;
+  --color-paper: #f3efe6;
+  --color-mute: #8b93a7;
+  --color-heat: #ff4d2e;
+  --font-display: "Chakra Petch", "Arial Narrow", sans-serif;
+  --font-sans: "Outfit", "Avenir Next", sans-serif;
+}
+
+@layer base {
+  html,
+  body {
+    background: var(--color-ink);
+    color: var(--color-paper);
+    font-family: var(--font-sans);
+    min-height: 100%;
+    overscroll-behavior: none;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  ::selection {
+    background: var(--color-heat);
+    color: var(--color-paper);
+  }
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 0.84;
+  text-transform: uppercase;
+}
+
+.btn {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0 1.25rem;
+  border-radius: 2px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.btn:focus-visible,
+.field:focus-visible {
+  outline: 2px solid var(--color-heat);
+  outline-offset: 2px;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+}
+
+.btn-heat {
+  background: var(--color-heat);
+  color: var(--color-paper);
+}
+
+.btn-heat:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-paper);
+  border: 1px solid var(--color-line);
+}
+
+.btn-ghost:hover:not(:disabled) {
+  border-color: var(--color-paper);
+}
+
+.plate {
+  background: var(--color-panel);
+  border: 1px solid var(--color-line);
+  border-radius: 2px;
+}
+
+.field {
+  min-height: 3rem;
+  width: 100%;
+  background: var(--color-ink);
+  border: 1px solid var(--color-line);
+  color: var(--color-paper);
+  padding: 0 0.875rem;
+  font-family: var(--font-sans);
+  border-radius: 2px;
+}
+
+.scan {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0 3px,
+    color-mix(in srgb, var(--color-paper) 4%, transparent) 3px 4px
+  );
+}
+
+.touch-controls {
+  display: none;
+}
+
+@media (pointer: coarse), (max-width: 800px) {
+  .touch-controls {
+    display: grid;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-heat:hover:not(:disabled) {
+    filter: none;
+  }
+}
